@@ -1,22 +1,16 @@
 import React from 'react'
 
 import SearchInput from '../SearchInput'
-import { BookType } from '../Book'
 import Books from '../Books'
-
-interface Response {
-  data?: {
-    items: BookType[]
-  }
-}
+import { GoogleBook } from '../../types'
 
 export function GoogleBooks() {
-  const [response, setResponse] = React.useState<Response>({})
+  const [data, setData] = React.useState<GoogleBook[]>()
 
   return (
     <div>
-      <SearchInput title='GOOGLE BOOKS' setResponse={setResponse} />
-      {response.data && <Books books={response.data.items} />}
+      <SearchInput title='GOOGLE BOOKS' setResponse={setData} />
+      {data && <Books books={data} />}
     </div>
   )
 }

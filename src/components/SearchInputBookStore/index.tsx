@@ -21,6 +21,7 @@ const SearchInputBookStore = ({ setResponse }: SearchInputProps) => {
 
   React.useEffect(() => {
     getBooks()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

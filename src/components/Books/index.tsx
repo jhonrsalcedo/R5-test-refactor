@@ -1,16 +1,15 @@
-import React from 'react'
-import Book , { BookType }from '../Book'
-import './books.css'
+import Book from '../Book'
+import { BooksProps } from '../../types'
 
-export interface BooksProps {
-  books: BookType[]
-}
+import './books.css'
 
 const Books = ({ books }: BooksProps) => {
   return (
-    <div className="books">
-      {books.map(book => <Book key={book.id} book={book} />)} 
-    </div>
+    <section className='books'>
+      {books.map((book) => (
+        <Book key={book.id} book={book} />
+      ))}
+    </section>
   )
 }
 

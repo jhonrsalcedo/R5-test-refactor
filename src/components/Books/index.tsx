@@ -1,14 +1,19 @@
-import Book from '../Book'
+import BookGoogle from '../GoogleBooks/Book'
+import BookStore from '../BookStore/Book'
 import { BooksProps } from '../../types'
 
 import './books.css'
 
-const Books = ({ books }: BooksProps) => {
+const Books = ({ books, isGoogleBooks }: BooksProps) => {
   return (
     <section className='books'>
-      {books.map((book) => (
-        <Book key={book.id} book={book} />
-      ))}
+      {books.map((book) =>
+        isGoogleBooks ? (
+          <BookGoogle key={book.id} book={book} />
+        ) : (
+          <BookStore key={book.id} book={book} />
+        )
+      )}
     </section>
   )
 }

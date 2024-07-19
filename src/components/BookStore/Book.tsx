@@ -1,18 +1,8 @@
 import { useState, useEffect, MouseEvent, ChangeEvent, FormEvent } from 'react'
 import Modal from '../Modal/Modal'
 
+import { BookProps } from '../../types'
 import './book.css'
-
-export type BookType = {
-  id: number
-  title: string
-  cover_image: string
-  author: string
-  description: string
-}
-export interface BookProps {
-  book: BookType
-}
 
 const Book = ({ book }: BookProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -73,11 +63,7 @@ const Book = ({ book }: BookProps) => {
   return (
     <div className='book'>
       <div className='book-image'>
-        {book.cover_image ? (
-          <img alt={book.title} src={book.cover_image} />
-        ) : (
-          <img src='https://picsum.photos/200/260' alt='default' />
-        )}
+        <img alt={book.title} src={book.imageUrl} />
       </div>
       <p className='book-title'>{book.title}</p>
       <span
@@ -89,8 +75,8 @@ const Book = ({ book }: BookProps) => {
       <button onClick={openModal}>Ver mas...</button>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <h2>{`Details Book ${book.title}`}</h2>
-        <img alt={book.title} src={book.cover_image} />
-        <p>{`author: ${book.author}`}</p>
+        <img alt={book.title} src={book.imageUrl} />
+        <p>{`author: ${book.authors}`}</p>
         <p>{`description: ${book.description}`}</p>
         <form onSubmit={handleCommentSubmit}>
           <textarea

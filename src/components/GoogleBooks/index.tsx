@@ -10,7 +10,7 @@ export function GoogleBooks() {
   return (
     <div>
       <SearchInput title='GOOGLE BOOKS' setResponse={setData} isGoogleBooks />
-      {data && <Books books={data} />}
+      {data && <Books books={data} isGoogleBooks />}
     </div>
   )
 }

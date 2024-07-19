@@ -31,11 +31,12 @@ export interface BookInfo {
 }
 
 export type BooksProps = {
-  books: GoogleBook[]
+  books: BookInfo[]
+  isGoogleBooks?: boolean
 }
 
 export type BookProps = {
-  book: GoogleBook
+  book: BookInfo
 }
 // #endregion
 

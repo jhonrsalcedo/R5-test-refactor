@@ -1,0 +1,63 @@
+.book {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+
+.book-image {
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #f0edf5;
+}
+
+.book-image img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.modal-overlay img {
+  max-width: 30%;
+  height: 0 auto;
+}
+
+.book-title {
+  color: #878787;
+  font-weight: bold;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.favorite-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: gray;
+}
+
+.favorite-icon.favorite {
+  color: gold;
+}
+
+textarea {
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+}
+
+button {
+  display: block;
+  margin-top: 10px;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comments h3 {
+  margin-bottom: 10px;
+}
+
+.comments p {
+  margin-bottom: 5px;
+}

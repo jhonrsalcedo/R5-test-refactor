@@ -7,8 +7,9 @@ interface Response {
   data?: BookType[]
 }
 
-const Bookstore = () => {
+export function Bookstore() {
   const [response, setResponse] = React.useState<Response>({})
+
   return (
     <div>
       <SearchInputBookStore setResponse={setResponse} />
@@ -16,5 +17,3 @@ const Bookstore = () => {
     </div>
   )
 }
-
-export default Bookstore

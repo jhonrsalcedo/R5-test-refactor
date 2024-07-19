@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Layout } from './components/Layout'
 import { GoogleBooks } from './components/GoogleBooks'
-import Bookstore from './components/Bookstore'
+import { Bookstore } from './components/Bookstore'
 import { NotFound } from './components/NotFound'
 
 export function App() {

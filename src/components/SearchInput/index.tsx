@@ -10,7 +10,7 @@ const SearchInput = ({
   isGoogleBooks
 }: SearchInputProps) => {
   const [searchValue, setSearchValue] = React.useState('')
-  const { getBooks } = useBooks({ setResponse, isGoogleBooks })
+  const { getBooks, loading, error } = useBooks({ setResponse, isGoogleBooks })
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value)
@@ -29,6 +29,8 @@ const SearchInput = ({
       <button className='search-button' onClick={() => getBooks(searchValue)}>
         Buscar
       </button>
+      {loading && <p>Cargando...</p>}
+      {error && <p>error</p>}
     </div>
   )
 }

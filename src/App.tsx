@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Layout } from './components/Layout'
 import { GoogleBooks } from './components/GoogleBooks'
-import { Bookstore } from './components/Bookstore'
+import { BookStore } from './components/Bookstore'
 import { NotFound } from './components/NotFound'
 
 export function App() {
@@ -10,7 +10,7 @@ export function App() {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<GoogleBooks />} />
-        <Route path='bookstore' element={<Bookstore />} />
+        <Route path='bookstore' element={<BookStore />} />
         <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>

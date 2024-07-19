@@ -4,9 +4,13 @@ import { useBooks } from '../../hooks/useBooks'
 import { SearchInputProps } from '../../types'
 import './SearchInput.css'
 
-const SearchInput = ({ setResponse, title }: SearchInputProps) => {
+const SearchInput = ({
+  setResponse,
+  title,
+  isGoogleBooks
+}: SearchInputProps) => {
   const [searchValue, setSearchValue] = React.useState('')
-  const { getBooks } = useBooks({ setResponse })
+  const { getBooks } = useBooks({ setResponse, isGoogleBooks })
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value)

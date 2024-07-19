@@ -1,11 +1,15 @@
 import { useEffect } from 'react'
 
-import { getGoogleBooks } from '../services/books'
+import { getGoogleBooks, getBookStore } from '../services/books'
 import { UseBooks } from '../types'
 
-export function useBooks({ setResponse }: UseBooks) {
-  const getBooks = (title: string = 'javascript') => {
-    getGoogleBooks(title).then((data) => setResponse(data))
+export function useBooks({ setResponse, isGoogleBooks }: UseBooks) {
+  const getBooks = (title?: string) => {
+    const promiseBooks = isGoogleBooks
+      ? getGoogleBooks(title)
+      : getBookStore(title)
+
+    promiseBooks.then((data) => setResponse(data))
   }
 
   useEffect(() => {

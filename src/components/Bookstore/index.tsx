@@ -1,19 +1,16 @@
-import React from 'react'
-import SearchInputBookStore from '../SearchInputBookStore'
-import Books from './Books'
-import { BookType } from './Book'
+import { useState } from 'react'
 
-interface Response {
-  data?: BookType[]
-}
+import SearchInput from '../SearchInput'
+import Books from '../Books'
+import { BookInfo } from '../../types'
 
-export function Bookstore() {
-  const [response, setResponse] = React.useState<Response>({})
+export function BookStore() {
+  const [data, setData] = useState<BookInfo[]>()
 
   return (
     <div>
-      <SearchInputBookStore setResponse={setResponse} />
-      {response.data && <Books books={response.data} />}
+      <SearchInput title='BOOK STORE' setResponse={setData} />
+      {data && <Books books={data} />}
     </div>
   )
 }

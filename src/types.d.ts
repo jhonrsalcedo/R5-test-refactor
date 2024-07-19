@@ -1,10 +1,13 @@
+// #region GOOGLE BOOKS
 export type SearchInputProps = {
   title: string
   setResponse: Function
+  isGoogleBooks?: boolean
 }
 
 export type UseBooks = {
   setResponse: Function
+  isGoogleBooks?: boolean
 }
 
 export interface ResponseGoogleBook {
@@ -19,10 +22,10 @@ export interface ResponseGoogleBook {
   }
 }
 
-export interface GoogleBook {
-  id: string
+export interface BookInfo {
+  id: string | number
   title: string
-  authors: string[]
+  authors: string[] | string
   description: string
   imageUrl: string
 }
@@ -34,3 +37,14 @@ export type BooksProps = {
 export type BookProps = {
   book: GoogleBook
 }
+// #endregion
+
+// #region BOOK STORE
+export interface ResponseBookStore {
+  id: number
+  title: string
+  cover_image: string
+  author: string
+  description: string
+}
+// #endregion

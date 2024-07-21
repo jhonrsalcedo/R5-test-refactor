@@ -18,7 +18,7 @@ function Menu() {
             <li>
               <Link to='/bookstore'>
                 <BookText className='menu-icon-book' />
-                <span>Bookstore</span>
+                <span>Book Store</span>
               </Link>
             </li>
           </ul>

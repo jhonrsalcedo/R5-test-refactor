@@ -8,10 +8,10 @@ function GoogleBooks() {
   const [data, setData] = useState<BookInfo[]>()
 
   return (
-    <div>
+    <section>
       <SearchInput title='GOOGLE BOOKS' setResponse={setData} isGoogleBooks />
       {data && <Books books={data} isGoogleBooks />}
-    </div>
+    </section>
   )
 }
 

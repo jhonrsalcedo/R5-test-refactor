@@ -1,10 +1,10 @@
 import { useState, useEffect, MouseEvent, ChangeEvent, FormEvent } from 'react'
-import Modal from '../Modal/Modal'
+import Modal from '../../Modal/Modal'
 
-import { BookProps } from '../../types'
-import './book.css'
+import { BookProps } from '../../../types'
+import './ContentBookStore.css'
 
-const Book = ({ book }: BookProps) => {
+function ContentBookStore({ book }: BookProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
   const [comment, setComment] = useState('')
@@ -99,4 +99,4 @@ const Book = ({ book }: BookProps) => {
   )
 }
 
-export default Book
+export default ContentBookStore

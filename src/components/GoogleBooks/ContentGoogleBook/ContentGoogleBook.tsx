@@ -1,7 +1,7 @@
-import { BookProps } from '../../types'
-import './book.css'
+import { BookProps } from '../../../types'
+import './ContentGoogleBook.css'
 
-const Book = ({ book }: BookProps) => (
+const ContentGoogleBook = ({ book }: BookProps) => (
   <div className='book'>
     <div className='book-image'>
       <img alt={book.title} src={book.imageUrl} />
@@ -10,4 +10,4 @@ const Book = ({ book }: BookProps) => (
   </div>
 )
 
-export default Book
+export default ContentGoogleBook

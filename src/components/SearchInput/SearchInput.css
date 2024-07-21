@@ -32,7 +32,12 @@
   color: white;
 }
 
-.search .loading {
+.search-button .loading {
   color: white;
   font-size: 20px;
+}
+
+.search-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

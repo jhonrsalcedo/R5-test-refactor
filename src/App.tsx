@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 
 import Layout from './components/Layout/Menu'
-import GoogleBooks from './components/GoogleBooks/GoogleBooks'
-import BookStore from './components/BookStore/BookStore'
+import GoogleBooks from './components/GoogleBooks'
+import BookStore from './components/BookStore'
 import { NotFound } from './components/NotFound'
 
 export function App() {

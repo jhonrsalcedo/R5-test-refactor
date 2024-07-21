@@ -28,8 +28,12 @@ function SearchInput({ setResponse, title, isGoogleBooks }: SearchInputProps) {
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}
       />
-      <button className='search-button' onClick={() => getBooks(searchValue)}>
-        <span>Buscar</span>
+      <button
+        className='search-button'
+        onClick={() => getBooks(searchValue)}
+        disabled={loading}
+      >
+        <span>{loading ? 'Buscando...' : 'Buscar'}</span>
       </button>
       {loading && <p className='loading'>LOADING...</p>}
       {error && <p>error</p>}

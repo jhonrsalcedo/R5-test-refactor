@@ -4,7 +4,7 @@ import './Menu.css'
 function Menu() {
   return (
     <>
-      <header className='menu-book show'>
+      <header className='menu-book'>
         <nav>
           <h2>R5</h2>
 
@@ -17,7 +17,6 @@ function Menu() {
             </li>
             <li>
               <Link to='/bookstore'>
-                {' '}
                 <BookText className='menu-icon-book' />
                 <span>Bookstore</span>
               </Link>

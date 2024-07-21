@@ -4,7 +4,7 @@ import './modal.css'
 
 interface ModalProps {
   isOpen: boolean
-  onClose: () => void
+  onClose: React.MouseEventHandler<HTMLButtonElement>
   children: React.ReactNode
 }
 

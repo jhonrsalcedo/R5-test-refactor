@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import SearchInput from '../SearchInput'
+import SearchInput from '../SearchInput/SearchInput'
 import Books from '../Books/Books'
 import { BookInfo } from '../../types'
 

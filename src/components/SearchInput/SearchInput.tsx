@@ -1,21 +1,22 @@
-import React, { ChangeEvent } from 'react'
+import { ChangeEvent, KeyboardEvent, useState } from 'react'
 
 import { useBooks } from '../../hooks/useBooks'
 import { SearchInputProps } from '../../types'
 import './SearchInput.css'
 
-const SearchInput = ({
-  setResponse,
-  title,
-  isGoogleBooks
-}: SearchInputProps) => {
-  const [searchValue, setSearchValue] = React.useState('')
+function SearchInput({ setResponse, title, isGoogleBooks }: SearchInputProps) {
+  const [searchValue, setSearchValue] = useState('')
   const { getBooks, loading, error } = useBooks({ setResponse, isGoogleBooks })
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value)
   }
 
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      getBooks(searchValue)
+    }
+  }
   return (
     <div className='search'>
       <h1>{title}</h1>
@@ -25,11 +26,12 @@ const SearchInput = ({
         placeholder='Buscar un libro'
         value={searchValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyPress}
       />
       <button className='search-button' onClick={() => getBooks(searchValue)}>
-        Buscar
+        <span>Buscar</span>
       </button>
-      {loading && <p>Cargando...</p>}
+      {loading && <p className='loading'>LOADING...</p>}
       {error && <p>error</p>}
     </div>
   )

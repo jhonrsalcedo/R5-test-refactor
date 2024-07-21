@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 
-import Layout from './components/Layout/Layout'
+import Layout from './components/Layout/Menu'
 import GoogleBooks from './components/GoogleBooks/GoogleBooks'
 import BookStore from './components/BookStore/BookStore'
 import { NotFound } from './components/NotFound'

@@ -27,7 +27,8 @@ function ContentBookStore({ book }: BookProps) {
     setIsModalOpen(true)
   }
 
-  const closeModal = () => {
+  const closeModal = (event: MouseEvent) => {
+    event.stopPropagation()
     setIsModalOpen(false)
   }
 
@@ -61,39 +62,54 @@ function ContentBookStore({ book }: BookProps) {
   }
 
   return (
-    <div className='book'>
-      <div className='book-image'>
+    <div className='bookstore' onClick={openModal}>
+      <div className='bookstore-image'>
         <img alt={book.title} src={book.imageUrl} />
       </div>
-      <p className='book-title'>{book.title}</p>
+      <p className='bookstore-title'>{book.title}</p>
       <span
         className={`favorite-icon ${isFavorite ? 'favorite' : ''}`}
         onClick={toggleFavorite}
       >
         {isFavorite ? '★' : '☆'}
       </span>
-      <button onClick={openModal}>Ver mas...</button>
+      {/* <button onClick={openModal}>Ver mas...</button> */}
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2>{`Details Book ${book.title}`}</h2>
-        <img alt={book.title} src={book.imageUrl} />
-        <p>{`author: ${book.authors}`}</p>
-        <p>{`description: ${book.description}`}</p>
-        <form onSubmit={handleCommentSubmit}>
-          <textarea
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder='Add your comment here'
-          />
-          <button type='submit'>Submit Comment</button>
-          <div className='comments'>
-            <h3>Comments:</h3>
-            {comments.length > 0 ? (
-              comments.map((comment, index) => <p key={index}>{comment}</p>)
-            ) : (
-              <p>No comments yet</p>
-            )}
+        <div className='wrapper-modal'>
+          <h2>{`Details Book ${book.title}`}</h2>
+          <div className='content-description'>
+            <img alt={book.title} src={book.imageUrl} />
+            <div className='description'>
+              <p>
+                <span>Author:</span>
+                {` ${book.authors}`}
+              </p>
+              <br />
+              <span>Description:</span>
+              <p>{`${book.description}`}</p>
+            </div>
           </div>
-        </form>
+
+          <form onSubmit={handleCommentSubmit}>
+            <textarea
+              className='modal-textarea'
+              value={comment}
+              onChange={handleCommentChange}
+              placeholder='Add your comment here'
+            />
+            <button type='submit' className='modal-button'>
+              Leave a comment
+            </button>
+            <div className='comments'>
+              <h3>Comments:</h3>
+              {comments.length > 0 ? (
+                comments.map((comment, index) => <p key={index}>{comment}</p>)
+              ) : (
+                <p>No comments yet</p>
+              )}
+            </div>
+          </form>
+        </div>
       </Modal>
     </div>
   )

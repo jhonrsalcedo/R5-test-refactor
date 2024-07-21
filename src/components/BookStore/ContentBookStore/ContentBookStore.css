@@ -1,32 +1,60 @@
-.book {
+.bookstore {
   text-align: center;
   width: 100%;
   display: inline-block;
 }
 
-.book-image {
+.bookstore-image {
   width: 100%;
   max-width: 100%;
   padding: 2rem;
   border-radius: 10px;
   background-color: #f0edf5;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.book-image img {
+.bookstore-image img {
   width: 100%;
   max-width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.bookstore-image:hover img {
+  transform: scale(1.05);
 }
 
 .modal-overlay img {
-  max-width: 30%;
+  max-width: 40%;
   height: 0 auto;
 }
 
-.book-title {
-  color: #878787;
+.bookstore-title {
+  color: #4a83f6;
   font-weight: bold;
   padding-top: 10px;
   font-size: 14px;
+}
+
+.wrapper-modal h2 {
+  margin-bottom: 10px;
+}
+
+.wrapper-modal .content-description {
+  display: flex;
+}
+
+.wrapper-modal .description {
+  line-height: 20px;
+  padding-left: 20px;
+}
+
+.wrapper-modal .description span {
+  font-weight: 600;
+}
+
+.wrapper-modal h2 {
+  color: black;
 }
 
 .favorite-icon {
@@ -39,22 +67,30 @@
   color: gold;
 }
 
-textarea {
+.modal-textarea {
   width: 100%;
   height: 60px;
   margin-top: 10px;
 }
 
-button {
-  display: block;
-  margin-top: 10px;
+.modal-button {
+  border-radius: 13px;
+  padding: 1rem;
+  font-size: 14px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #4a83f6;
+  color: white;
+  margin: 5px 0 5px 0;
 }
 
-.comments {
+.bookstore .comments {
   margin-top: 20px;
 }
 
 .comments h3 {
+  color: black;
   margin-bottom: 10px;
 }
 

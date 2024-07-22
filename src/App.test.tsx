@@ -1,31 +1,59 @@
-import React from 'react'
-import {render, screen} from '@testing-library/react'
-import axiosMock from 'axios'
-import App from './App'
+import { render, screen, act } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { BrowserRouter } from 'react-router-dom'
 
-const book = {
-  id: 'SqikDwAAQBAJ',
-  volumeInfo: {
-    title: 'JavaScript - Aprende a programar en el lenguaje de la web',
-    authors: ["Fernando Luna"],
-    publishedDate: "2019-07-23",
-    imageLinks: {
-      thumbnail: "http://books.google.com/books/content?id=SqikDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-    },
-  }
-}
+import { App } from './App'
 
-test('App: Should show books', async () => {
-  const books = {items: [book]}
-  const response = { data: books }
-  axiosMock.get.mockResolvedValue(response)
-  render(<App />)
+test('renders navigation links', async () => {
+  await act(async () => {
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    )
+  })
 
-  const bookTitle = await screen.findByText(/javascript/i)
-  const pageTitle = screen.getByText(/google books/i)
+  const navGoogleBooks = screen.getByRole('link', { name: 'Google Books' })
+  const navBookStore = screen.getByRole('link', { name: 'Book Store' })
 
-  expect(bookTitle).toBeInTheDocument()
-  expect(pageTitle).toBeInTheDocument()
+  expect(navGoogleBooks).toBeInTheDocument()
+  expect(navBookStore).toBeInTheDocument()
 })
 
+test('App: Should show google books', async () => {
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
 
+  const navGoogleBooks = screen.getByRole('link', { name: 'Google Books' })
+  userEvent.click(navGoogleBooks)
+
+  const pageTitle = screen.getByRole('heading', { name: 'GOOGLE BOOKS' })
+  const bookTitle = await screen.findByText(
+    'JavaScript - Aprende a programar en el lenguaje de la web'
+  )
+
+  expect(pageTitle).toBeInTheDocument()
+  expect(bookTitle).toBeInTheDocument()
+})
+
+test('App: Should show store books', async () => {
+  await act(async () => {
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    )
+  })
+
+  const navBookStore = screen.getByRole('link', { name: 'Book Store' })
+  userEvent.click(navBookStore)
+
+  const pageTitle = screen.getByRole('heading', { name: 'BOOK STORE' })
+  const bookTitle = await screen.findByText('The Lord of the Rings')
+
+  expect(pageTitle).toBeInTheDocument()
+  expect(bookTitle).toBeInTheDocument()
+})

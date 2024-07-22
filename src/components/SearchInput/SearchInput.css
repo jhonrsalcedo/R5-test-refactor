@@ -12,7 +12,7 @@
   padding: 1rem 1.4rem;
   border: none;
   box-shadow: 0 0 0 7px rgba(0, 0, 0, 0.08);
-  color: #a5a5a5;
+  color: #282837;
   outline: none;
   font-size: 17px;
 }
@@ -20,7 +20,24 @@
 .search-button {
   border-radius: 13px;
   padding: 1rem;
+  font-size: 16px;
   border: none;
   font-weight: bold;
   cursor: pointer;
+  background-color: #4a83f6;
+  color: #4a83f6;
+}
+
+.search-button span {
+  color: white;
+}
+
+.search-button .loading {
+  color: white;
+  font-size: 20px;
+}
+
+.search-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

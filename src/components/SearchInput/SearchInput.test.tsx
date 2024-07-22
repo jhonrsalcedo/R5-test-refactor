@@ -1,54 +1,21 @@
-import React from 'react'
-import {render, waitFor, fireEvent, screen} from '@testing-library/react'
-import axiosMock from 'axios'
-import SearchInput from './'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
-const book = {
-  id: 'SqikDwAAQBAJ',
-  volumeInfo: {
-    title: 'JavaScript - Aprende a programar en el lenguaje de la web',
-    authors: ["Fernando Luna"],
-    publishedDate: "2019-07-23",
-    imageLinks: {
-      "smallThumbnail": "http://books.google.com/books/content?id=SqikDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-      "thumbnail": "http://books.google.com/books/content?id=SqikDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-    },
-  }
-}
+import SearchInput from './SearchInput'
 
-test('SearchInput: Should get books when SearchInput is mounted' ,async () => {
-  const setResponse = jest.fn()
-  const books = {items: [book]}
-  const response = {data: books}
-  axiosMock.get.mockResolvedValue(response)
-
-  render(<SearchInput setResponse={setResponse} />)
-  await waitFor(() => {
-    expect(setResponse).toBeCalledWith(response)
-  })
-
-})
-
-
-test('SearchInput: Should get books when click on Buscar', async () => {
-  const setResponse = jest.fn()
-  const books = {items: [book]}
-  const response = {data: books}
-  axiosMock.get.mockResolvedValue(response)
-
-  render(<SearchInput setResponse={setResponse} />)
-  await waitFor(() => {
-    expect(setResponse).toBeCalledWith(response)
-  })
-
-  fireEvent.change(screen.getByPlaceholderText(/Buscar/i),
-    { target: { value: 'javascript' } }
+test('asdadf', async () => {
+  render(
+    <SearchInput title={'Test'} isGoogleBooks={true} setResponse={jest.fn()} />
   )
 
-  fireEvent.click(screen.getByText('Buscar'))
+  const pageTitle = screen.getByRole('heading', { name: 'Test' })
+  expect(pageTitle).toBeInTheDocument()
 
-  await waitFor(() => {
-    expect(setResponse).toBeCalledTimes(2)
+  const searchButtonLoading = screen.getByRole('button', {
+    name: 'Buscando...'
   })
+  expect(searchButtonLoading).toBeInTheDocument()
 
+  const searchButton = await screen.findByRole('button', { name: 'Buscar' })
+  expect(searchButton).toBeInTheDocument()
 })

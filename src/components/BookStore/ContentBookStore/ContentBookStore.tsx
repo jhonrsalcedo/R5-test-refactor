@@ -2,6 +2,7 @@ import { useState, useEffect, MouseEvent, ChangeEvent, FormEvent } from 'react'
 import Modal from '../../Modal/Modal'
 
 import { BookProps } from '../../../types'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import './ContentBookStore.css'
 
 function ContentBookStore({
@@ -73,7 +74,7 @@ function ContentBookStore({
         className={`favorite-icon ${isFavorite ? 'favorite' : ''}`}
         onClick={toggleFavorite}
       >
-        {isFavorite ? '★' : '☆'}
+        {isFavorite ? <FaHeart color='red' /> : <FaRegHeart color='red' />}
       </span>
       {/* <button onClick={openModal}>Ver mas...</button> */}
       <Modal isOpen={isModalOpen} onClose={closeModal}>

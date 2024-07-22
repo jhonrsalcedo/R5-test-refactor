@@ -97,3 +97,7 @@
 .comments p {
   margin-bottom: 5px;
 }
+
+.filled {
+  background-color: red;
+}

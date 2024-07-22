@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
-import { BookOpenText, BookText } from 'lucide-react'
+import { LuBookOpen } from 'react-icons/lu'
 import './Menu.css'
 function Menu() {
   return (
@@ -11,13 +11,13 @@ function Menu() {
           <ul>
             <li>
               <Link to='/'>
-                <BookOpenText className='menu-icon-book' />
+                <LuBookOpen className='menu-icon-book' />
                 <span>Google Books</span>
               </Link>
             </li>
             <li>
               <Link to='/bookstore'>
-                <BookText className='menu-icon-book' />
+                <LuBookOpen className='menu-icon-book' />
                 <span>Book Store</span>
               </Link>
             </li>

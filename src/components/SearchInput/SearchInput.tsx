@@ -2,6 +2,7 @@ import { ChangeEvent, KeyboardEvent, useState } from 'react'
 
 import { useBooks } from '../../hooks/useBooks'
 import { SearchInputProps } from '../../types'
+import { ThreeDots } from 'react-loader-spinner'
 import './SearchInput.css'
 
 function SearchInput({ setResponse, title, isGoogleBooks }: SearchInputProps) {
@@ -14,7 +15,7 @@ function SearchInput({ setResponse, title, isGoogleBooks }: SearchInputProps) {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      getBooks(searchValue)
+      getBooks(!searchValue && isGoogleBooks ? 'javascript' : searchValue)
     }
   }
   return (
@@ -35,7 +36,18 @@ function SearchInput({ setResponse, title, isGoogleBooks }: SearchInputProps) {
       >
         <span>{loading ? 'Buscando...' : 'Buscar'}</span>
       </button>
-      {loading && <p className='loading'>LOADING...</p>}
+      {loading && (
+        <ThreeDots
+          visible={true}
+          height='80'
+          width='80'
+          color='#fff'
+          radius='9'
+          ariaLabel='three-dots-loading'
+          wrapperStyle={{}}
+          wrapperClass=''
+        />
+      )}
       {error && <p>error</p>}
     </div>
   )

@@ -46,9 +46,9 @@ describe('useBooks', () => {
   })
 
   describe('Book Store', () => {
-    test('should fetch books from Google Books and update response', async () => {
+    test('should fetch books from Book Store and update response', async () => {
       const mockData = [{ title: 'Book 1' }, { title: 'Book 2' }]
-      ;(getGoogleBooks as jest.Mock).mockResolvedValue(mockData)
+      ;(getBookStore as jest.Mock).mockResolvedValue(mockData)
 
       const { result, waitForNextUpdate } = renderHook(() =>
         useBooks({ setResponse, isGoogleBooks: false })
@@ -62,9 +62,9 @@ describe('useBooks', () => {
       expect(result.current.error).toBeUndefined()
     })
 
-    test('should handle error when fetching books from google books', async () => {
-      const mockError = new Error('Failed to fetch google books')
-      ;(getGoogleBooks as jest.Mock).mockRejectedValue(mockError)
+    test('should handle error when fetching books from Book Store', async () => {
+      const mockError = new Error('Failed to fetch Book Store')
+      ;(getBookStore as jest.Mock).mockRejectedValue(mockError)
 
       const { result, waitForNextUpdate } = renderHook(() =>
         useBooks({ setResponse, isGoogleBooks: false })

@@ -4,7 +4,9 @@ import Modal from '../../Modal/Modal'
 import { BookProps } from '../../../types'
 import './ContentBookStore.css'
 
-function ContentBookStore({ book }: BookProps) {
+function ContentBookStore({
+  book: { id, title, authors, description, imageUrl }
+}: BookProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
   const [comment, setComment] = useState('')
@@ -15,13 +17,13 @@ function ContentBookStore({ book }: BookProps) {
     const favoriteBooks = JSON.parse(
       localStorage.getItem('favoriteBooks') || '[]'
     )
-    setIsFavorite(favoriteBooks.includes(book.id))
+    setIsFavorite(favoriteBooks.includes(id))
 
     const savedComments = JSON.parse(
-      localStorage.getItem(`comments-${book.id}`) || '[]'
+      localStorage.getItem(`comments-${id}`) || '[]'
     )
     setComments(savedComments)
-  }, [book.id])
+  }, [id])
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -39,11 +41,11 @@ function ContentBookStore({ book }: BookProps) {
     )
     if (isFavorite) {
       const updatedFavorites = favoriteBooks.filter(
-        (id: number) => id !== book.id
+        (bookId: number) => bookId !== id
       )
       localStorage.setItem('favoriteBooks', JSON.stringify(updatedFavorites))
     } else {
-      favoriteBooks.push(book.id)
+      favoriteBooks.push(id)
       localStorage.setItem('favoriteBooks', JSON.stringify(favoriteBooks))
     }
     setIsFavorite(!isFavorite)
@@ -57,16 +59,16 @@ function ContentBookStore({ book }: BookProps) {
     e.preventDefault()
     const updatedComments = [...comments, comment]
     setComments(updatedComments)
-    localStorage.setItem(`comments-${book.id}`, JSON.stringify(updatedComments))
+    localStorage.setItem(`comments-${id}`, JSON.stringify(updatedComments))
     setComment('')
   }
 
   return (
     <div className='bookstore' onClick={openModal}>
       <div className='bookstore-image'>
-        <img alt={book.title} src={book.imageUrl} />
+        <img alt={title} src={imageUrl} />
       </div>
-      <p className='bookstore-title'>{book.title}</p>
+      <p className='bookstore-title'>{title}</p>
       <span
         className={`favorite-icon ${isFavorite ? 'favorite' : ''}`}
         onClick={toggleFavorite}
@@ -76,17 +78,17 @@ function ContentBookStore({ book }: BookProps) {
       {/* <button onClick={openModal}>Ver mas...</button> */}
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className='wrapper-modal'>
-          <h2>{`Details Book ${book.title}`}</h2>
+          <h2>{`Details Book ${title}`}</h2>
           <div className='content-description'>
-            <img alt={book.title} src={book.imageUrl} />
+            <img alt={title} src={imageUrl} />
             <div className='description'>
               <p>
                 <span>Author:</span>
-                {` ${book.authors}`}
+                {` ${authors}`}
               </p>
               <br />
               <span>Description:</span>
-              <p>{`${book.description}`}</p>
+              <p>{`${description}`}</p>
             </div>
           </div>
 
